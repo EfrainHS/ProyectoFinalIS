@@ -23,6 +23,7 @@ import pojos.Paciente;
 public class AdminPaciente extends javax.swing.JFrame {
     Servicio ser = new Servicio();
     int cod = 0;
+    //Comentario
     /**
      * Creates new form AdminPaciente
      */
