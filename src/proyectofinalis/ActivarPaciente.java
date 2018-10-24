@@ -205,6 +205,7 @@ public class ActivarPaciente extends javax.swing.JFrame {
         //AdminPaciente ap = new AdminPaciente();
         //ap.setVisible(true);
         this.dispose();
+        //teste
     }//GEN-LAST:event_btn_desactivarActionPerformed
 
     /**
