@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import pojos.Cita;
 import pojos.Doctor;
 import pojos.Paciente;
 
@@ -82,6 +83,36 @@ public class Servicio {
             //Implementacion para arreglos
             Gson gson = new Gson();
             TypeToken<List<Paciente>> tipoListaCat = new TypeToken<List<Paciente>>(){};
+            usuarios = gson.fromJson(gsonRespuesta, tipoListaCat.getType());
+            
+        }catch(Exception e){
+            System.err.println("Exception: "+e);
+        }
+        return usuarios;
+    }
+    
+     public List<Cita> consultarCitas(String urlWS){
+        ArrayList<Cita> usuarios = null;
+        try{
+            URL url  = new URL(urlWS);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            if (conn.getResponseCode() != 200){
+                throw new RuntimeException("Conexion fallida con codigo: "+conn.getResponseCode());
+            }
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            String respuesta;
+            String gsonRespuesta = "";
+            while((respuesta = br.readLine()) != null){
+                gsonRespuesta = respuesta;
+            }
+            conn.disconnect();
+            
+            //Implementacion para arreglos
+            Gson gson = new Gson();
+            TypeToken<List<Cita>> tipoListaCat = new TypeToken<List<Cita>>(){};
             usuarios = gson.fromJson(gsonRespuesta, tipoListaCat.getType());
             
         }catch(Exception e){
