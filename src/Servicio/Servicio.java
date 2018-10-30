@@ -121,7 +121,7 @@ public class Servicio {
         return usuarios;
     }
     
-    public List<Doctor> consultarDoctores(String urlWS){
+    public List<Doctor> login(String urlWS){
         ArrayList<Doctor> usuarios = null;
         try{
             URL url  = new URL(urlWS);

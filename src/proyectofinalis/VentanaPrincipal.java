@@ -131,7 +131,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btn_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarSesionActionPerformed
         Servicio ser = new Servicio();
-        List<Doctor> lista = ser.consultarDoctores("http://localhost:8084/EasyNutritionService/webresources/Nutrition/loginDoctor/"+txt_correo.getText()+","+txt_contra.getText());
+        List<Doctor> lista = ser.login("http://localhost:8084/EasyNutritionService/webresources/Nutrition/loginDoctor/"+txt_correo.getText()+","+txt_contra.getText());
         if (lista.equals(null)){
             JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos!", "Error", JOptionPane.WARNING_MESSAGE);
         }else{
