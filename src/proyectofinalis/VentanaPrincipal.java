@@ -130,9 +130,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarSesionActionPerformed
-        /*Servicio ser = new Servicio();
-        List<Doctor> lista = ser.consultarDoctores("http://localhost:8084/EasyNutritionService/webresources/Nutrition/getDoctores");
-        for(Doctor r:lista){
+        Servicio ser = new Servicio();
+        List<Doctor> lista = ser.consultarDoctores("http://localhost:8084/EasyNutritionService/webresources/Nutrition/loginDoctor/"+txt_correo.getText()+","+txt_contra.getText());
+        if (lista.equals(null)){
+            JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos!", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
+            VentanaAdministracion va = new VentanaAdministracion();
+            va.setVisible(true);
+            this.dispose();
+        }
+        
+        /*for(Doctor r:lista){
             String a = r.getCorreo();
             String b = r.getContraseña();
             System.out.println(a+"- "+b);
@@ -145,9 +153,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }*/
         
-        VentanaAdministracion va = new VentanaAdministracion();
+        /*VentanaAdministracion va = new VentanaAdministracion();
         va.setVisible(true);
-        this.dispose();
+        this.dispose();*/
         
     }//GEN-LAST:event_btn_IniciarSesionActionPerformed
 
