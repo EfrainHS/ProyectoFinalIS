@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author MoisesGamerPro
  */
 public class RegistroPaciente extends javax.swing.JFrame {
-
+    private String estatuss = "Activo";
     /**
      * Creates new form RegistroPaciente
      */
@@ -49,7 +49,6 @@ public class RegistroPaciente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txt_apellidos = new javax.swing.JTextField();
         txt_domicilio = new javax.swing.JTextField();
@@ -57,7 +56,6 @@ public class RegistroPaciente extends javax.swing.JFrame {
         txt_contra = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
         txt_genero = new javax.swing.JComboBox<>();
-        txt_estatus = new javax.swing.JComboBox<>();
         txt_iddoctor = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btn_registrar = new javax.swing.JButton();
@@ -83,18 +81,9 @@ public class RegistroPaciente extends javax.swing.JFrame {
 
         jLabel8.setText("Telefono");
 
-        jLabel9.setText("Estatus");
-
         jLabel10.setText("idDoctor");
 
         txt_genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
-
-        txt_estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        txt_estatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_estatusActionPerformed(evt);
-            }
-        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel11.setText("Registro Paciente");
@@ -168,13 +157,8 @@ public class RegistroPaciente extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txt_telefono)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btn_registrar)))
+                            .addGap(27, 27, 27)
+                            .addComponent(btn_registrar))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,9 +204,7 @@ public class RegistroPaciente extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9)
-                    .addComponent(txt_estatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_registrar)
@@ -232,10 +214,6 @@ public class RegistroPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_estatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estatusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_estatusActionPerformed
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         Servicio ser = new Servicio();
@@ -253,7 +231,7 @@ public class RegistroPaciente extends javax.swing.JFrame {
         String f = txt_correo.getText();
         String g = txt_contra.getText();
         String h = txt_telefono.getText();
-        String i = txt_estatus.getSelectedItem().toString();
+        String i = estatuss;
         
         System.out.println(a+b+c+d+e+f+g+h+i);
         
@@ -274,7 +252,8 @@ public class RegistroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_RegresarActionPerformed
 
     private void doctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorActionPerformed
-        // TODO add your handling code here:
+        SeleccionDoctor select = new SeleccionDoctor();
+        select.setVisible(true);
     }//GEN-LAST:event_doctorActionPerformed
 
     /**
@@ -326,15 +305,13 @@ public class RegistroPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_contra;
     private javax.swing.JTextField txt_correo;
     private javax.swing.JTextField txt_domicilio;
-    private javax.swing.JComboBox<String> txt_estatus;
     private com.toedter.calendar.JDateChooser txt_fechanaci;
     private javax.swing.JComboBox<String> txt_genero;
-    private javax.swing.JTextField txt_iddoctor;
+    public static javax.swing.JTextField txt_iddoctor;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
