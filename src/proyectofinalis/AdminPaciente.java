@@ -8,12 +8,16 @@ package proyectofinalis;
 import Servicio.Servicio;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import pojos.Paciente;
 
 /**
@@ -23,6 +27,7 @@ import pojos.Paciente;
 public class AdminPaciente extends javax.swing.JFrame {
     Servicio ser = new Servicio();
     int cod = 0;
+    private TableRowSorter trsFiltro;
     //Comentario
     /**
      * Creates new form AdminPaciente
@@ -50,7 +55,6 @@ public class AdminPaciente extends javax.swing.JFrame {
             for(Paciente r:lista){
                 String a = r.getEstatus();
                 String b = "Activo";
-                System.out.println(a);
                 if (a.equals(b)){
                     Vector v = new Vector();
                     v.add(r.getIdPaciente());
@@ -81,11 +85,12 @@ public class AdminPaciente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txt_buscar = new javax.swing.JTextField();
+        txtFiltro = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
         btn_actualizar = new javax.swing.JButton();
         btn_activardesactivar = new javax.swing.JButton();
         btn_Regresar = new javax.swing.JButton();
+        comboFiltro = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,11 +117,16 @@ public class AdminPaciente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txt_tabla);
 
-        jLabel1.setText("Buscar");
+        jLabel1.setText("Buscar por: ");
 
-        txt_buscar.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_buscarActionPerformed(evt);
+                txtFiltroActionPerformed(evt);
+            }
+        });
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
             }
         });
 
@@ -152,6 +162,8 @@ public class AdminPaciente extends javax.swing.JFrame {
             }
         });
 
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Id", "Nombre", "Telefono", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,9 +176,11 @@ public class AdminPaciente extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(btn_activardesactivar))
                             .addGap(38, 38, 38))
@@ -185,7 +199,8 @@ public class AdminPaciente extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,9 +217,9 @@ public class AdminPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscarActionPerformed
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscarActionPerformed
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         RegistroPaciente rp = new RegistroPaciente();
@@ -237,6 +252,33 @@ public class AdminPaciente extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_txt_tablaMouseClicked
+    
+    public void filtro() {
+        int columnaABuscar = 0;
+        if (comboFiltro.getSelectedItem() == "Id") {
+            columnaABuscar = 0;
+        }
+        if (comboFiltro.getSelectedItem().toString() == "Nombre") {
+            columnaABuscar = 1;
+        }
+        if (comboFiltro.getSelectedItem() == "Telefono") {
+            columnaABuscar = 4;
+        }
+        trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
+    }
+    
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+        txtFiltro.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText());
+                txtFiltro.setText(cadena);
+                repaint();
+                filtro();
+            }
+        });
+        trsFiltro = new TableRowSorter(txt_tabla.getModel());
+        txt_tabla.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtFiltroKeyTyped
 
     /**
      * @param args the command line arguments
@@ -278,9 +320,10 @@ public class AdminPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btn_activardesactivar;
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_registrar;
+    private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txt_buscar;
+    private javax.swing.JTextField txtFiltro;
     private javax.swing.JTable txt_tabla;
     // End of variables declaration//GEN-END:variables
 }

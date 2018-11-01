@@ -211,13 +211,13 @@ public class RegistroDoctor extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_correoActionPerformed
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
-        VentanaPrincipal vp = new VentanaPrincipal();
+        Login vp = new Login();
         vp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_registrarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        VentanaPrincipal vp = new VentanaPrincipal();
+        Login vp = new Login();
         vp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_regresarActionPerformed
