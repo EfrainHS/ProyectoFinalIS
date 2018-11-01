@@ -132,31 +132,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btn_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarSesionActionPerformed
         Servicio ser = new Servicio();
         List<Doctor> lista = ser.login("http://localhost:8084/EasyNutritionService/webresources/Nutrition/loginDoctor/"+txt_correo.getText()+","+txt_contra.getText());
-        if (lista.equals(null)){
+        if (lista.size()== 0){
             JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos!", "Error", JOptionPane.WARNING_MESSAGE);
         }else{
+            for(Doctor r:lista){
+                System.out.println(r.getIdDoctor());
+            }
             VentanaAdministracion va = new VentanaAdministracion();
             va.setVisible(true);
             this.dispose();
-        }
-        
-        /*for(Doctor r:lista){
-            String a = r.getCorreo();
-            String b = r.getContraseña();
-            System.out.println(a+"- "+b);
-            if(a.equals(txt_correo.getText()) && b.equals(txt_contra.getText())){
-                VentanaAdministracion va = new VentanaAdministracion();
-                va.setVisible(true);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos!", "Error", JOptionPane.WARNING_MESSAGE);
-            }
-        }*/
-        
-        /*VentanaAdministracion va = new VentanaAdministracion();
-        va.setVisible(true);
-        this.dispose();*/
-        
+        }      
     }//GEN-LAST:event_btn_IniciarSesionActionPerformed
 
     private void btn_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroActionPerformed

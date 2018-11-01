@@ -122,7 +122,7 @@ public class Servicio {
     }
     
     public List<Doctor> login(String urlWS){
-        ArrayList<Doctor> usuarios = null;
+        ArrayList<Doctor> doctores = null;
         try{
             URL url  = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -143,11 +143,11 @@ public class Servicio {
             //Implementacion para arreglos
             Gson gson = new Gson();
             TypeToken<List<Doctor>> tipoListaCat = new TypeToken<List<Doctor>>(){};
-            usuarios = gson.fromJson(gsonRespuesta, tipoListaCat.getType());
+            doctores = gson.fromJson(gsonRespuesta, tipoListaCat.getType());
             
         }catch(Exception e){
             System.err.println("Exception: "+e);
         }
-        return usuarios;
+        return doctores;
     }
 }
