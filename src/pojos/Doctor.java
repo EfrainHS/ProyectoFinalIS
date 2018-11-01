@@ -16,19 +16,19 @@ public class Doctor {
     private String genero;
     private String domicilio;
     private String correo;
-    private String contraseña;
+    private String password;
 
     public Doctor() {
     }
 
-    public Doctor(Integer idDoctor, String nombre, String apellidos, String genero, String domicilio, String correo, String contraseña) {
+    public Doctor(Integer idDoctor, String nombre, String apellidos, String genero, String domicilio, String correo, String password) {
         this.idDoctor = idDoctor;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.genero = genero;
         this.domicilio = domicilio;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.password = password;
     }
 
     public Integer getIdDoctor() {
@@ -79,13 +79,11 @@ public class Doctor {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
-    
-    
 }

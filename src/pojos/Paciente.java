@@ -11,7 +11,7 @@ public class Paciente {
     private Date fecha;
     private String genero;
     private String correo;
-    private String contraseña;
+    private String password;
     private String telefono;
     private String estatus;
     private Integer idDoctor;
@@ -19,7 +19,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(Integer idPaciente, String nombre, String apellidos, String domicilio, Date fecha, String genero, String correo, String contraseña, String telefono, String estatus, Integer idDoctor) {
+    public Paciente(Integer idPaciente, String nombre, String apellidos, String domicilio, Date fecha, String genero, String correo, String password, String telefono, String estatus, Integer idDoctor) {
         this.idPaciente = idPaciente;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -27,7 +27,7 @@ public class Paciente {
         this.fecha = fecha;
         this.genero = genero;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.password = password;
         this.telefono = telefono;
         this.estatus = estatus;
         this.idDoctor = idDoctor;
@@ -89,12 +89,12 @@ public class Paciente {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTelefono() {
