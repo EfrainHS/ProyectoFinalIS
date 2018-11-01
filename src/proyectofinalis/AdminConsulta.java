@@ -13,7 +13,7 @@ import java.awt.Toolkit;
  * @author MoisesGamerPro
  */
 public class AdminConsulta extends javax.swing.JFrame {
-
+        public static int iddoctor;
     /**
      * Creates new form AdminConsulta
      */

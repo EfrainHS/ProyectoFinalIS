@@ -136,7 +136,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos!", "Error", JOptionPane.WARNING_MESSAGE);
         }else{
             for(Doctor r:lista){
-                System.out.println(r.getIdDoctor());
+                VentanaAdministracion.iddoctor = r.getIdDoctor();
             }
             VentanaAdministracion va = new VentanaAdministracion();
             va.setVisible(true);

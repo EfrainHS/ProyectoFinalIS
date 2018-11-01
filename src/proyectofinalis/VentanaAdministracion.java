@@ -13,7 +13,7 @@ import java.awt.Toolkit;
  * @author MoisesGamerPro
  */
 public class VentanaAdministracion extends javax.swing.JFrame {
-
+    public static int iddoctor;
     /**
      * Creates new form VentanaAdministracion
      */
@@ -131,6 +131,7 @@ public class VentanaAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_adminPacienteActionPerformed
 
     private void btn_adminConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_adminConsultasActionPerformed
+        AdminConsulta.iddoctor=iddoctor;
         AdminConsulta ac = new AdminConsulta();
         ac.setVisible(true);
         this.dispose();
