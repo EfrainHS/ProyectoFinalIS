@@ -162,7 +162,7 @@ public class SeleccionDoctor extends javax.swing.JFrame {
                 String cadena = (txtFiltro.getText());
                 txtFiltro.setText(cadena);
                 repaint();
-                trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 2));
+                trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
             }
         });
         trsFiltro = new TableRowSorter(doctores.getModel());

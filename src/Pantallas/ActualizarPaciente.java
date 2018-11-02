@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import pojos.Paciente;
 
 /**
@@ -19,6 +20,7 @@ import pojos.Paciente;
 public class ActualizarPaciente extends javax.swing.JFrame {
     public static int idpaciente;
      Servicio ser = new Servicio();
+     boolean estado = false;
     /**
      * Creates new form ActualizarPaciente
      */
@@ -43,8 +45,6 @@ public class ActualizarPaciente extends javax.swing.JFrame {
                 txt_apellidos.setText(r.getApellidos());
                 txt_genero.setSelectedItem(r.getGenero());
                 txt_iddoctor.setText(r.getIdDoctor().toString());
-                Date fecha = r.getFecha();
-                System.out.println(fecha);
                 txt_domicilio.setText(r.getDomicilio());
                 txt_correo.setText(r.getCorreo());
                 txt_contra.setText(r.getPassword());
@@ -102,7 +102,8 @@ public class ActualizarPaciente extends javax.swing.JFrame {
         btn_Regresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_apellidos = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        doctores = new javax.swing.JButton();
+        baja = new javax.swing.JButton();
 
         jLabel12.setText("Apellidos");
 
@@ -149,19 +150,19 @@ public class ActualizarPaciente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txt_nombre.setEditable(false);
+        txt_nombre.setEnabled(false);
 
-        txt_domicilio.setEditable(false);
+        txt_domicilio.setEnabled(false);
 
         jLabel2.setText("Apellidos");
 
-        txt_correo.setEditable(false);
+        txt_correo.setEnabled(false);
 
         jLabel3.setText("Genero");
 
-        txt_contra.setEditable(false);
+        txt_contra.setEnabled(false);
 
-        txt_telefono.setEditable(false);
+        txt_telefono.setEnabled(false);
 
         jLabel5.setText("Domicilio");
 
@@ -172,7 +173,7 @@ public class ActualizarPaciente extends javax.swing.JFrame {
 
         jLabel7.setText("Contraseña");
 
-        txt_iddoctor.setEditable(false);
+        txt_iddoctor.setEnabled(false);
 
         jLabel8.setText("Telefono");
 
@@ -199,10 +200,18 @@ public class ActualizarPaciente extends javax.swing.JFrame {
 
         jLabel1.setText("Nombre");
 
-        txt_apellidos.setEditable(false);
+        txt_apellidos.setEnabled(false);
 
-        jButton1.setText("+");
-        jButton1.setEnabled(false);
+        doctores.setText("+");
+        doctores.setEnabled(false);
+
+        baja.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        baja.setText("Desabilitar");
+        baja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,16 +222,6 @@ public class ActualizarPaciente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txt_genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(48, 48, 48)
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txt_iddoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -233,12 +232,23 @@ public class ActualizarPaciente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txt_nombre))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(baja)
+                                .addGap(18, 18, 18)
                                 .addComponent(btn_Regresar)
                                 .addGap(23, 23, 23)
                                 .addComponent(btn_actualizar)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_iddoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(doctores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
@@ -246,11 +256,11 @@ public class ActualizarPaciente extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_domicilio)
                                     .addComponent(txt_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
                                 .addComponent(txt_contra))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_telefono)
@@ -276,7 +286,7 @@ public class ActualizarPaciente extends javax.swing.JFrame {
                     .addComponent(txt_genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(txt_iddoctor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(doctores))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -294,9 +304,11 @@ public class ActualizarPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_actualizar)
-                    .addComponent(btn_Regresar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_actualizar)
+                        .addComponent(btn_Regresar))
+                    .addComponent(baja))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -304,9 +316,38 @@ public class ActualizarPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
-        AdminPaciente ap = new AdminPaciente();
-        ap.setVisible(true);
-        this.dispose();
+        if(estado == false){
+            txt_nombre.setEnabled(true);
+            txt_apellidos.setEnabled(true);
+            txt_genero.setEnabled(true);
+            txt_iddoctor.setEnabled(true);
+            doctores.setEnabled(true);
+            txt_domicilio.setEnabled(true);
+            txt_correo.setEnabled(true);
+            txt_contra.setEnabled(true);
+            txt_telefono.setEnabled(true);
+            btn_actualizar.setText("Guardar");
+            btn_Regresar.setText("Cancelar");
+            baja.setVisible(false);
+            estado = true;
+        }else{
+            String a = txt_nombre.getText();
+            String b = txt_apellidos.getText();
+            String c = txt_genero.getSelectedItem().toString();
+            String d = txt_iddoctor.getText();
+            String e = txt_domicilio.getText();
+            String f = txt_correo.getText();
+            String g = txt_contra.getText();
+            String h = txt_telefono.getText();
+            
+            String parametros = "idPaciente="+idpaciente+"&nombre="+a+"&apellidos="+b+"&domicilio="+e+"&genero="+c+"&correo="+f+"&password="+g+"&telefono="+h+"&idDoctor="+d;
+            ser.actualizar("http://localhost:8084/EasyNutritionService/webresources/Nutrition/actualizarPaciente", parametros);
+            JOptionPane.showMessageDialog(null, "La informacion del cliente ha sido actualizado exitosamente!");
+            
+            AdminPaciente ap = new AdminPaciente();
+            ap.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void txt_estatus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estatus1ActionPerformed
@@ -318,10 +359,37 @@ public class ActualizarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_actualizar1ActionPerformed
 
     private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
-        AdminPaciente ap = new AdminPaciente();
-        ap.setVisible(true);
-        this.dispose();
+        if(btn_Regresar.getText() == "Cancelar"){
+            txt_nombre.setEnabled(false);
+            txt_apellidos.setEnabled(false);
+            txt_genero.setEnabled(false);
+            txt_iddoctor.setEnabled(false);
+            doctores.setEnabled(false);
+            txt_domicilio.setEnabled(false);
+            txt_correo.setEnabled(false);
+            txt_contra.setEnabled(false);
+            txt_telefono.setEnabled(false);
+            btn_actualizar.setText("Actualizar");
+            btn_Regresar.setText("Regresar");
+            baja.setVisible(true);
+            estado = false;
+        }else{
+            AdminPaciente ap = new AdminPaciente();
+            ap.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_RegresarActionPerformed
+
+    private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Se Inabilitará el usuario, ¿desea continuar?",
+        "Desactivar Usuario", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            String parametros = "idPaciente="+idpaciente+"&estatus=Inactivo";
+            ser.actualizar("http://localhost:8084/EasyNutritionService/webresources/Nutrition/altabaja", parametros);
+            AdminPaciente ap = new AdminPaciente();
+            ap.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_bajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,11 +427,12 @@ public class ActualizarPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton baja;
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JButton btn_Regresar1;
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_actualizar1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton doctores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -148,7 +148,7 @@ public class AdminPaciente extends javax.swing.JFrame {
         });
 
         btn_activardesactivar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_activardesactivar.setText("Activar / Desactivar");
+        btn_activardesactivar.setText("Habilitar Pacientes");
         btn_activardesactivar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_activardesactivarActionPerformed(evt);
@@ -231,6 +231,7 @@ public class AdminPaciente extends javax.swing.JFrame {
     private void btn_activardesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_activardesactivarActionPerformed
         ActivarPaciente ap = new ActivarPaciente();
         ap.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_activardesactivarActionPerformed
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed

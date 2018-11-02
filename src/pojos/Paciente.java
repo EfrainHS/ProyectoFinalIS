@@ -120,6 +120,6 @@ public class Paciente {
     public void setIdDoctor(Integer idDoctor) {
         this.idDoctor = idDoctor;
     }
-    
+
     
 }

@@ -233,9 +233,7 @@ public class RegistroPaciente extends javax.swing.JFrame {
         String h = txt_telefono.getText();
         String i = estatuss;
         
-        System.out.println(a+b+c+d+e+f+g+h+i);
-        
-        String parametros = "nombre="+a+"&apellidos="+b+"&domicilio="+e+"&fecha="+fecha+"&genero="+c+"&correo="+f+"&contraseña="+g+"&telefono="+h+"&estatus="+i+"&idDoctor="+d;
+        String parametros = "nombre="+a+"&apellidos="+b+"&domicilio="+e+"&fecha="+fecha+"&genero="+c+"&correo="+f+"&password="+g+"&telefono="+h+"&estatus="+i+"&idDoctor="+d;
         ser.registrar("http://localhost:8084/EasyNutritionService/webresources/Nutrition/registroPaciente", parametros);
         
         JOptionPane.showMessageDialog(null, "La informacion del cliente ha sido guardada exitosamente!");

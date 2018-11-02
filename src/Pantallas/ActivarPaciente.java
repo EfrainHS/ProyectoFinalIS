@@ -8,11 +8,17 @@ package Pantallas;
 import Servicio.Servicio;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import pojos.Paciente;
 
 /**
@@ -21,6 +27,7 @@ import pojos.Paciente;
  */
 public class ActivarPaciente extends javax.swing.JFrame {
     Servicio ser = new Servicio();
+    private TableRowSorter trsFiltro;
     int cod = 0;
     
     public ActivarPaciente() {
@@ -44,14 +51,18 @@ public class ActivarPaciente extends javax.swing.JFrame {
         int con= 0;
         try{
             for(Paciente r:lista){
-                Vector v = new Vector();
-                v.add(r.getIdPaciente());
-                v.add(r.getNombre());
-                v.add(r.getApellidos());
-                v.add(r.getDomicilio());
-                v.add(r.getTelefono());
-                v.add(r.getEstatus());
-                modelo.addRow(v);
+                String a = r.getEstatus();
+                String b = "Inactivo";
+                if(a.equals(b)){
+                    Vector v = new Vector();
+                    v.add(r.getIdPaciente());
+                    v.add(r.getNombre());
+                    v.add(r.getApellidos());
+                    v.add(r.getDomicilio());
+                    v.add(r.getTelefono());
+                    v.add(r.getEstatus());
+                    modelo.addRow(v);
+                }
             }
             modelo.fireTableDataChanged();
             txt_tabla.setModel(modelo);
@@ -70,8 +81,9 @@ public class ActivarPaciente extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        txt_buscar5 = new javax.swing.JTextField();
-        btn_desactivar = new javax.swing.JButton();
+        txtFiltro = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,19 +128,20 @@ public class ActivarPaciente extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar");
 
-        txt_buscar5.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_buscar5ActionPerformed(evt);
+                txtFiltroActionPerformed(evt);
+            }
+        });
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
             }
         });
 
-        btn_desactivar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btn_desactivar.setText("Desactivar");
-        btn_desactivar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_desactivarActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Id del usuario que se habilitará: ");
+
+        id.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,37 +151,39 @@ public class ActivarPaciente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_buscar5, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_activar)
+                        .addComponent(btn_Regresar)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_desactivar)
-                        .addGap(22, 22, 22))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Regresar)
-                .addGap(23, 23, 23))
+                        .addComponent(btn_activar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(txt_buscar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_desactivar)
-                        .addComponent(btn_activar)))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(btn_Regresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_activar)
+                    .addComponent(btn_Regresar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -176,37 +191,52 @@ public class ActivarPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
-        //AdminPaciente ap = new AdminPaciente();
-        //ap.setVisible(true);
+        AdminPaciente ap = new AdminPaciente();
+        ap.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_RegresarActionPerformed
 
     private void btn_activarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_activarActionPerformed
-
-        //AdminPaciente ap = new AdminPaciente();
-        //ap.setVisible(true);
-        this.dispose();
+        if (JOptionPane.showConfirmDialog(rootPane, "Se Habilitara el usuario, ¿desea continuar?",
+        "Activar Usuario", JOptionPane.OK_OPTION, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            String parametros = "idPaciente="+cod+"&estatus=Activo";
+            ser.actualizar("http://localhost:8084/EasyNutritionService/webresources/Nutrition/altabaja", parametros);
+            AdminPaciente ap = new AdminPaciente();
+            ap.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_activarActionPerformed
 
     private void txt_tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_tablaMouseClicked
         txt_tabla.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                int select = txt_tabla.getSelectedRow();
-                cod = (int) txt_tabla.getValueAt(select, 0);
+                JTable tabla = (JTable)evt.getSource();
+                int clic = evt.getClickCount();
+                if (clic == 1){
+                    int select = txt_tabla.getSelectedRow();
+                    cod = (int) txt_tabla.getValueAt(select, 0);
+                    id.setText(""+cod);
+                }
             }
         });
     }//GEN-LAST:event_txt_tablaMouseClicked
 
-    private void txt_buscar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar5ActionPerformed
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscar5ActionPerformed
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
-    private void btn_desactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desactivarActionPerformed
-        //AdminPaciente ap = new AdminPaciente();
-        //ap.setVisible(true);
-        this.dispose();
-        
-    }//GEN-LAST:event_btn_desactivarActionPerformed
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+       txtFiltro.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText());
+                txtFiltro.setText(cadena);
+                repaint();
+                trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), 1));
+            }
+        });
+        trsFiltro = new TableRowSorter(txt_tabla.getModel());
+        txt_tabla.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtFiltroKeyTyped
 
     /**
      * @param args the command line arguments
@@ -246,10 +276,11 @@ public class ActivarPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JButton btn_activar;
-    private javax.swing.JButton btn_desactivar;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txt_buscar5;
+    private javax.swing.JTextField txtFiltro;
     private javax.swing.JTable txt_tabla;
     // End of variables declaration//GEN-END:variables
 }
