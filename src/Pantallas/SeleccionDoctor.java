@@ -25,6 +25,7 @@ import pojos.Doctor;
  */
 public class SeleccionDoctor extends javax.swing.JFrame {
     Servicio ser = new Servicio();
+    String nom, ape;
     private TableRowSorter trsFiltro;
     /**
      * Creates new form SeleccionDoctor
@@ -152,7 +153,7 @@ public class SeleccionDoctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
-        RegistroPaciente.txt_iddoctor.setText(id.getText());
+        RegistroPaciente.txt_iddoctor.setText(nom +" "+ ape);
         this.dispose();
     }//GEN-LAST:event_AceptarActionPerformed
    
@@ -177,6 +178,9 @@ public class SeleccionDoctor extends javax.swing.JFrame {
                 if (clic == 1) {
                     int select = doctores.getSelectedRow();
                     int cod = (int) doctores.getValueAt(select, 0);
+                    RegistroPaciente.iddoctor = cod;
+                    nom = (String) doctores.getValueAt(select, 1);
+                    ape = (String) doctores.getValueAt(select, 2);
                     id.setText(""+cod);
                 }
             }

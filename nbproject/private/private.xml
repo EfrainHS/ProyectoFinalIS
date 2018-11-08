@@ -5,10 +5,11 @@
         <group>
             <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Servicio/Servicio.java</file>
             <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Pantallas/AdminPaciente.java</file>
+            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/pojos/Cita.java</file>
             <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Pantallas/ActualizarPaciente.java</file>
-            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/pojos/Paciente.java</file>
-            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/pojos/Doctor.java</file>
-            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Pantallas/RegistroPaciente.java</file>
+            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Pantallas/CrearCita.java</file>
+            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Pantallas/AdminCita.java</file>
+            <file>file:/C:/Users/EfrainHS/Documents/NetBeansProjects/ProyectoFinalIS/src/Pantallas/ActualizarCita.java</file>
         </group>
     </open-files>
 </project-private>
