@@ -20,7 +20,7 @@ import pojos.Paciente;
 public class Login extends javax.swing.JFrame {
 
     /**
-     * Creates new form VentanaPrincipal
+     * Creates new form VentanaPrincipal Pruevba
      */
     public Login() {
         initComponents();
@@ -114,7 +114,7 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Actualizacion prueba
     private void btn_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarSesionActionPerformed
         Servicio ser = new Servicio();
         List<Doctor> lista = ser.login("http://localhost:8084/EasyNutritionService/webresources/Nutrition/loginDoctor/"+txt_correo.getText()+","+txt_contra.getText());
