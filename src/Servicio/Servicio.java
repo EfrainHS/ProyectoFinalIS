@@ -129,7 +129,7 @@ public class Servicio {
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             if (conn.getResponseCode() != 200){
-                throw new RuntimeException("Conexion fallida con codigo: "+conn.getResponseCode());
+                throw new RuntimeException("Conexion fallida con codigo : "+conn.getResponseCode());
             }
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
             BufferedReader br = new BufferedReader(in);
