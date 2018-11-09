@@ -43,7 +43,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_IniciarSesion = new javax.swing.JButton();
-        btn_registro = new javax.swing.JButton();
         txt_correo = new javax.swing.JTextField();
         txt_contra = new javax.swing.JTextField();
         lb_correo = new javax.swing.JLabel();
@@ -57,15 +56,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_IniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_IniciarSesionActionPerformed(evt);
-            }
-        });
-
-        btn_registro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_registro.setText("Registro");
-        btn_registro.setAlignmentX(0.5F);
-        btn_registro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_registroActionPerformed(evt);
             }
         });
 
@@ -87,12 +77,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addComponent(btn_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -107,6 +91,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(163, 163, 163)
                 .addComponent(lb_correo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,11 +107,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(lb_contra)
                 .addGap(1, 1, 1)
                 .addComponent(txt_contra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,12 +136,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btn_IniciarSesionActionPerformed
-
-    private void btn_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroActionPerformed
-        RegistroDoctor rd = new RegistroDoctor();
-        rd.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_registroActionPerformed
 
     private void txt_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_correoActionPerformed
         // TODO add your handling code here:
@@ -198,7 +178,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_IniciarSesion;
-    private javax.swing.JButton btn_registro;
     private javax.swing.JLabel lb_contra;
     private javax.swing.JLabel lb_correo;
     private javax.swing.JTextField txt_contra;
