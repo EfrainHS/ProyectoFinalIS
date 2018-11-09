@@ -121,15 +121,15 @@ public class Servicio {
         return usuarios;
     }
     
-    public List<Doctor> consultarDoctores(String urlWS){
-        ArrayList<Doctor> usuarios = null;
+    public List<Doctor> login(String urlWS){
+        ArrayList<Doctor> doctores = null;
         try{
             URL url  = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
             if (conn.getResponseCode() != 200){
-                throw new RuntimeException("Conexion fallida con codigo: "+conn.getResponseCode());
+                throw new RuntimeException("Conexion fallida con codigo : "+conn.getResponseCode());
             }
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
             BufferedReader br = new BufferedReader(in);
@@ -143,11 +143,11 @@ public class Servicio {
             //Implementacion para arreglos
             Gson gson = new Gson();
             TypeToken<List<Doctor>> tipoListaCat = new TypeToken<List<Doctor>>(){};
-            usuarios = gson.fromJson(gsonRespuesta, tipoListaCat.getType());
+            doctores = gson.fromJson(gsonRespuesta, tipoListaCat.getType());
             
         }catch(Exception e){
             System.err.println("Exception: "+e);
         }
-        return usuarios;
+        return doctores;
     }
 }
